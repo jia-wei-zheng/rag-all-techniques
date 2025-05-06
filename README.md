@@ -6,28 +6,28 @@
 
 目标很简单：提供易于阅读、修改和学习的代码。通过关注基础，这个项目有助于揭开 RAG 的神秘面纱，使人们更容易理解它真正的工作原理。
 
-| Notebook                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [01. Simple RAG (简单的 RAG)](#Simple RAG（简单 RAG）)       | 基本的 RAG 实现                                              |
-| [02. Semantic Chunking（语义切分）](#Semantic Chunking（语义切分）) | 根据语义相似性分割文本，以形成更有意义的块。                 |
-| [03. Context Enriched Retrieval RAG（上下文增强检索）](#Context Enriched Retrieval（上下文增强检索）) | 获取相邻块以提供更多上下文。                                 |
-| [04. Contextual Chunk Headers（上下文分块标题）](#Contextual Chunk Headers（上下文分块标题）) | 在嵌入之前，为每个片段添加描述性标题。                       |
-| [05. Document Augmentation RAG（文档增强）](#Document Augmentation（文档增强）) | 从文本片段生成问题以增强检索过程。                           |
-| [06. Query Transformation（查询转换）](#Query Transformation（查询转换）) | 重新编写、扩展或分解查询以提高检索效果。包括回退提示和子查询分解。 |
-| [07. Reranker（重新排序器）](#Reranker（重新排序器）)        | 使用 LLM 对最初检索到的结果进行重排，以获得更好的相关性。    |
-| [08. RSE（关联段落提取）](#RSE（关联段落提取）)              | 相关段落提取：识别并重建连续的文本段落，保留上下文。         |
-| [09. Contextual Compression（上下文压缩）](#Contextual Compression（上下文压缩）) | 实现上下文压缩以过滤和压缩检索到的块，最大化相关信息。       |
-| [10. Feedback Loop（反馈循环）](#Feedback Loop（反馈循环）)  | 随时间推移，通过用户反馈学习并改进 RAG 系统。                |
-| [11. Adaptive RAG（适应性 RAG）](#Adaptive RAG（适应性 RAG）) | 根据查询类型动态选择最佳检索策略。                           |
-| [12. Self RAG](#Self RAG)                                    | 实现了 Self-RAG，动态决定何时以及如何检索，评估相关性，并评估支持和效用。 |
-| [13. Fusion RAG（融合）](#Fusion（融合）)                    | 结合向量搜索和基于关键词（BM25）的检索，以改善结果。         |
-| [14. Graph RAG](#Knowledge Graph（Graph RAG）)               | 将知识组织为图，使相关概念能够遍历。                         |
-| [15. Hierarchy RAG](#Hierarchical Indices（层次索引）)       | 构建层次索引（摘要+详细片段），以实现高效检索。              |
-| [16. HyDE RAG（假设性文档）](#HyDE（假设性文档）)            | 使用假设文档嵌入来提高语义匹配。                             |
-| [17. CRAG（纠错型RAG）](#Crag（纠错型RAG）)                  | 动态评估检索质量，并使用网络搜索作为后备                     |
-| **分块技术**                                                 |                                                              |
-| [Proposition Chunking 命题分块](#命题分块技术)               | 将文档分解为原子事实陈述，以实现精确检索。                   |
-| [Chunk Size Selector  块大小选择器](#不同块大小)             | 探讨不同块大小对检索性能的影响。                             |
+| Notebook                                                                            | Description                                                  |
+|-------------------------------------------------------------------------------------| ------------------------------------------------------------ |
+| [01. Simple RAG (简单的 RAG)](#Simple-RAG（简单 RAG）)                                     | 基本的 RAG 实现                                              |
+| [02. Semantic Chunking（语义切分）](#Semantic-Chunking（语义切分）)                             | 根据语义相似性分割文本，以形成更有意义的块。                 |
+| [03. Context Enriched Retrieval RAG（上下文增强检索）](#Context-Enriched-Retrieval（上下文增强检索）) | 获取相邻块以提供更多上下文。                                 |
+| [04. Contextual Chunk Headers（上下文分块标题）](#Contextual-Chunk-Headers（上下文分块标题）)         | 在嵌入之前，为每个片段添加描述性标题。                       |
+| [05. Document Augmentation RAG（文档增强）](#Document-Augmentation（文档增强）)                 | 从文本片段生成问题以增强检索过程。                           |
+| [06. Query Transformation（查询转换）](#Query-Transformation（查询转换）)                       | 重新编写、扩展或分解查询以提高检索效果。包括回退提示和子查询分解。 |
+| [07. Reranker（重新排序器）](#Reranker（重新排序器）)                                             | 使用 LLM 对最初检索到的结果进行重排，以获得更好的相关性。    |
+| [08. RSE（关联段落提取）](#RSE（关联段落提取）)                                                     | 相关段落提取：识别并重建连续的文本段落，保留上下文。         |
+| [09. Contextual Compression（上下文压缩）](#Contextual-Compression（上下文压缩）)                 | 实现上下文压缩以过滤和压缩检索到的块，最大化相关信息。       |
+| [10. Feedback Loop（反馈循环）](#Feedback-Loop（反馈循环）)                                     | 随时间推移，通过用户反馈学习并改进 RAG 系统。                |
+| [11. Adaptive RAG（适应性 RAG）](#Adaptive-RAG（适应性 RAG）)                                 | 根据查询类型动态选择最佳检索策略。                           |
+| [12. Self RAG](#Self-RAG)                                                           | 实现了 Self-RAG，动态决定何时以及如何检索，评估相关性，并评估支持和效用。 |
+| [13. Fusion RAG（融合）](#Fusion（融合）)                                                   | 结合向量搜索和基于关键词（BM25）的检索，以改善结果。         |
+| [14. Graph RAG](#Knowledge-Graph（Graph RAG）)                                        | 将知识组织为图，使相关概念能够遍历。                         |
+| [15. Hierarchy RAG](#Hierarchical-Indices（层次索引）)                                    | 构建层次索引（摘要+详细片段），以实现高效检索。              |
+| [16. HyDE RAG（假设性文档）](#HyDE（假设性文档）)                                                 | 使用假设文档嵌入来提高语义匹配。                             |
+| [17. CRAG（纠错型RAG）](#Crag（纠错型RAG）)                                                   | 动态评估检索质量，并使用网络搜索作为后备                     |
+| **分块技术**                                                                            |                                                              |
+| [Proposition Chunking 命题分块](#命题分块技术)                                                | 将文档分解为原子事实陈述，以实现精确检索。                   |
+| [Chunk Size Selector  块大小选择器](#不同块大小)                                               | 探讨不同块大小对检索性能的影响。                             |
 
 ## Simple RAG（简单 RAG）
 
